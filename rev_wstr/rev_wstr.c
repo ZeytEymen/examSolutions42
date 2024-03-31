@@ -29,10 +29,15 @@ $> ./rev_wstr | cat -e
 $
 $>
 */
-
+/*
+string parametre alan bir program
+kelime boşluk ve/veya tab, veya kelime başlangoç/bitiş karakterleri içindedir
+paramtre sayısı 1 değilse yenisatır
+falzdan satır olmayacak
+*/
 int is_space(char ch)
 {
-    if (ch == ' ')
+    if (ch == 32)
         return 1;
     return (0);
 }
@@ -46,7 +51,6 @@ int main(int argc, char **argv)
         write(1,"\n",1);
         return (0);
     }
-   
     char **array =(char**)malloc(sizeof(char*) * 50);
     int arg_i = 0;
     int arr_i = 0;
@@ -70,24 +74,18 @@ int main(int argc, char **argv)
         array[arr_i] = temp;
         tmp_i = 0;
         arr_i++;
-        arg_i++;
     }
     int f_i = arr_i;
-    /*
     while (arr_i != -1)
     {
         printf("%s",array[arr_i]);
         arr_i--;
     }
-    */
-    
-    printf("%s\n",array[0]);
-    printf("%s\n",array[1]);
-    printf("%s",array[2]);
-    printf("%s\n",array[3]);
-    printf("%s\n",array[4]);
-    printf("%s",array[5]);
-
-    //write(1,"\n",1);
+    while (f_i != -1)
+    {
+        free(array[f_i]);
+        f_i--;
+    }
+    write(1,"\n",1);
     return (0);
 }
